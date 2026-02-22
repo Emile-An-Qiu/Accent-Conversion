@@ -1,3 +1,68 @@
+# Project Task Tracking – Accent Conversion Project
+
+**Date:** 22 Feb 2026  
+
+---
+
+## ✅ Completed This Week
+
+1. Completed project environment initialization and setup.
+2. Successfully synchronized development environment across all team members.
+3. Reproduced the Accent-Conversion pretrained model and verified its functionality.
+
+---
+
+## 📌 Tasks for Next Week
+
+### 👤 Yupeng Zhao
+
+- Familiarize with the `inference.ipynb` testing pipeline.
+- Evaluate the pretrained model under multiple performance metrics, such as:
+  - Mel-Cepstral Distortion (MCD)
+  - Signal-to-Noise Ratio (SNR)
+  - Other perceptual or objective metrics
+- Document evaluation results and identify potential improvement areas.
+
+---
+
+### 👤 Weirong Ye
+
+- Study and understand the training pipeline in `train.py`.
+- Gain a full understanding of:
+  - Training framework structure
+  - Model training logic
+  - Loss functions and optimization process
+- Begin training a custom model.
+- Perform initial hyperparameter tuning and verify training stability.
+
+---
+
+### 👤 An Qiu
+
+- Study the `meldataset.py` implementation and Mel-spectrogram preprocessing pipeline.
+- Evaluate model transferability to other audio domains, such as:
+  - Japanese speech
+  - Singing voice
+  - Other multilingual datasets
+- Complete environment setup and pretrained model reproduction for the Accent-Classification project.
+
+---
+
+## ⏰ Deadline
+
+**2 March 2026**
+
+---
+
+## 📍 Project Status Summary
+
+- Environment setup: ✅ Completed  
+- Pretrained model reproduction: ✅ Completed  
+- Model evaluation: 🔄 In progress  
+- Custom model training: ⏳ Pending  
+- Accent classification module: ⏳ Pending  
+
+
 # StarGANv2-VC: A Diverse, Unsupervised, Non-parallel Framework for Natural-Sounding Voice Conversion
 
 ## For Hifi-GAN and BIGVGAN support, please check out [this branch](https://github.com/yl4579/StarGANv2-VC/tree/BIGVGAN). 
