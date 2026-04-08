@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accentcat</title>
+  <style>
+    :root{
+      --bg1:#09103a; --bg2:#151b4d; --card:#1e2458; --panel:#272d63;
+      --line:#3dc4a4; --text:#f3f4ff; --muted:#b8b9d9; --btn:#4c64ff;
+      --btn2:#16b982; --btn3:#b24f69;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg1),#0d1347 55%, var(--bg2));min-height:100vh}
+    .wrap{max-width:1240px;margin:0 auto;padding:24px 18px}
+    .hero{text-align:center;margin-bottom:16px}
+    .title{font-size:48px;font-weight:900;margin:0}
+    .title .accent{color:#ff5d93}
+    .subtitle{margin-top:8px;color:var(--muted);letter-spacing:4px;text-transform:uppercase}
+    .cat-wrap{display:flex;justify-content:center;margin:20px 0 8px}
+    .cat-svg{width:260px;max-width:70vw;filter:drop-shadow(0 10px 28px rgba(0,0,0,.32))}
+    .grid{display:grid;grid-template-columns:1.03fr 1fr;gap:20px}
+    .card{background:#1d2457;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:26px}
+    .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+    .head h2{margin:0;font-size:24px}
+    .pill{background:#32557b;padding:10px 16px;border-radius:999px;font-weight:800}
+    .label{color:#d6d6ef;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin:18px 0 8px}
+    .muted{color:var(--muted)}
+    input[type=text]{width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:#2a3068;color:var(--text);font-size:16px;outline:none}
+    .btnrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px}
+    button{border:none;border-radius:20px;padding:17px 14px;font-size:16px;font-weight:900;color:#fff;cursor:pointer}
+    button:disabled{opacity:.55;cursor:not-allowed}
+    .b1{background:linear-gradient(135deg,#5d73ff,#6d72f4)}
+    .b2{background:linear-gradient(135deg,#18be8a,#0fa76d)}
+    .b3{background:linear-gradient(135deg,#b7506a,#9b3e58)}
+    .b4{width:100%;margin-top:14px;background:#313768}
+    .status{margin-top:14px;color:var(--muted);min-height:26px;font-size:14px}
+    .audio-card{margin-top:18px;background:var(--panel);border-radius:22px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);display:none}
+    audio{width:100%}
+    .box{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:18px 20px;min-height:180px;line-height:1.5;font-size:18px}
+    .box b{display:block;margin-top:10px}
+    .speakers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+    .speaker-cell{display:block}
+    .speaker-btn{width:100%;background:#2c4973;border:1px solid rgba(61,196,164,.58);padding:18px 12px;font-size:18px}
+    .hint{margin-top:14px;color:var(--muted);font-size:14px}
+    .download{display:inline-block;margin-top:10px;color:#d3e6ff}
+    @media (max-width: 920px){.grid{grid-template-columns:1fr}.btnrow{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1 class="title">Accent<span class="accent">cat</span> 🐱</h1>
+      <div class="subtitle">AI Accent Conversion · StarGANv2-VC</div>
+      <div class="cat-wrap">
+        <svg class="cat-svg" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" aria-label="cat">
+          <defs>
+            <radialGradient id="bodyGrad" cx="50%" cy="40%">
+              <stop offset="0%" stop-color="#6e6e82"/><stop offset="100%" stop-color="#4a4a5e"/>
+            </radialGradient>
+            <radialGradient id="bellyGrad" cx="50%" cy="30%">
+              <stop offset="0%" stop-color="#a0a0b4"/><stop offset="100%" stop-color="#8a8a9e"/>
+            </radialGradient>
+            <filter id="softShadow"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/></filter>
+          </defs>
+          <path d="M 230 280 Q 280 260 290 220 Q 295 190 275 170" stroke="#4a4a5e" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <ellipse cx="160" cy="270" rx="85" ry="75" fill="url(#bodyGrad)" filter="url(#softShadow)"/>
+          <ellipse cx="160" cy="278" rx="55" ry="52" fill="url(#bellyGrad)"/>
+          <path d="M 100 135 L 80 60 L 130 110 Z" fill="#5a5a6e"/>
+          <path d="M 103 128 L 88 72 L 126 114 Z" fill="#ffb3c6"/>
+          <path d="M 220 135 L 240 60 L 190 110 Z" fill="#5a5a6e"/>
+          <path d="M 217 128 L 232 72 L 194 114 Z" fill="#ffb3c6"/>
+          <ellipse cx="160" cy="160" rx="80" ry="70" fill="url(#bodyGrad)" filter="url(#softShadow)"/>
+          <ellipse cx="130" cy="155" rx="18" ry="20" fill="#f0f0ff"/>
+          <circle cx="132" cy="157" r="10" fill="#1a1a2e"/>
+          <circle cx="127" cy="150" r="4" fill="white" opacity="0.8"/>
+          <ellipse cx="190" cy="155" rx="18" ry="20" fill="#f0f0ff"/>
+          <circle cx="192" cy="157" r="10" fill="#1a1a2e"/>
+          <circle cx="187" cy="150" r="4" fill="white" opacity="0.8"/>
+          <ellipse cx="160" cy="178" rx="6" ry="5" fill="#ff6b9d"/>
+          <g stroke="#aaa" stroke-width="1.5" stroke-linecap="round" opacity="0.6">
+            <line x1="100" y1="175" x2="60" y2="168"/><line x1="100" y1="182" x2="55" y2="185"/>
+            <line x1="220" y1="175" x2="260" y2="168"/><line x1="220" y1="182" x2="265" y2="185"/>
+          </g>
+          <path d="M 150 188 Q 160 196 170 188" stroke="#666" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="115" cy="330" rx="22" ry="12" fill="#5a5a6e"/>
+          <ellipse cx="205" cy="330" rx="22" ry="12" fill="#5a5a6e"/>
+          <circle cx="110" cy="330" r="4" fill="#ffb3c6" opacity="0.6"/>
+          <circle cx="120" cy="330" r="4" fill="#ffb3c6" opacity="0.6"/>
+          <circle cx="200" cy="330" r="4" fill="#ffb3c6" opacity="0.6"/>
+          <circle cx="210" cy="330" r="4" fill="#ffb3c6" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="head">
+          <h2>Backend Connection</h2>
+          <div class="pill" id="connPill">Disconnected</div>
+        </div>
+
+        <div class="label">WebSocket Server URL</div>
+        <input id="wsUrl" type="text" placeholder="wss://.../ws/vc"/>
+
+        <div class="btnrow">
+          <button class="b1" id="connectBtn">Connect Backend</button>
+          <button class="b2" id="recordBtn" disabled>Start Recording</button>
+          <button class="b3" id="stopBtn" disabled>Stop & Upload</button>
+        </div>
+
+        <button class="b4" id="clearBtn" disabled>Clear Source</button>
+
+        <div class="status" id="statusText">Connect first, then record one source audio.</div>
+
+        <div class="audio-card" id="sourceAudioCard">
+          <div class="label" style="margin-top:0">Source Audio</div>
+          <audio id="sourceAudio" controls></audio>
+        </div>
+
+        <div class="label">Input Transcript</div>
+        <div class="box" id="sttBox">No transcription available.</div>
+      </section>
+
+      <section class="card">
+        <div class="head">
+          <h2>Converted Speakers</h2>
+          <div class="pill" id="sourcePill">No source</div>
+        </div>
+
+        <div class="muted" style="font-size:14px">
+          Only the input audio is transcribed. Converted audio is not transcribed.
+        </div>
+
+        <div class="speakers" id="speakerGrid"></div>
+
+        <div class="hint">Upload source audio once, then click any speaker to convert and play.</div>
+
+        <div class="audio-card" id="convertedAudioCard">
+          <div class="label" style="margin-top:0">Converted Audio</div>
+          <div id="convertedSpeakerName" style="font-weight:800;margin-bottom:10px">Speaker</div>
+          <audio id="convertedAudio" controls></audio>
+          <a id="downloadLink" class="download" href="#" download>Download converted wav</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+<script>
+const WS_URL_INPUT = document.getElementById('wsUrl');
+const connectBtn = document.getElementById('connectBtn');
+const recordBtn = document.getElementById('recordBtn');
+const stopBtn = document.getElementById('stopBtn');
+const clearBtn = document.getElementById('clearBtn');
+const statusText = document.getElementById('statusText');
+const connPill = document.getElementById('connPill');
+const sourcePill = document.getElementById('sourcePill');
+const sttBox = document.getElementById('sttBox');
+const speakerGrid = document.getElementById('speakerGrid');
+const sourceAudioCard = document.getElementById('sourceAudioCard');
+const sourceAudio = document.getElementById('sourceAudio');
+const convertedAudioCard = document.getElementById('convertedAudioCard');
+const convertedAudio = document.getElementById('convertedAudio');
+const convertedSpeakerName = document.getElementById('convertedSpeakerName');
+const downloadLink = document.getElementById('downloadLink');
+
+let ws = null, mediaRecorder = null, micStream = null;
+let audioChunks = [];
+let sourceUploaded = false;
+let sourceBlob = null;
+
+const SPEAKERS = ['p230','p236','p244','p254','p258','p273'];
+const SPEAKER_LABELS = {
+  p230: 'Female1',
+  p236: 'Female2',
+  p244: 'Female3',
+  p254: 'Male1',
+  p258: 'Male2',
+  p273: 'Male3'
+};
+
+function setStatus(text){ statusText.textContent = text; }
+function setConnected(yes){
+  connPill.textContent = yes ? 'Connected' : 'Disconnected';
+  connectBtn.disabled = yes;
+  recordBtn.disabled = !yes;
+  clearBtn.disabled = !yes;
+}
+function setSourceReady(yes){
+  sourceUploaded = yes;
+  sourcePill.textContent = yes ? 'Source ready' : 'No source';
+}
+function wsBaseToHttpBase(wsUrl){
+  return wsUrl.replace('wss://','https://').replace('ws://','http://').replace('/ws/vc','');
+}
+function speakerLabel(spk){ return SPEAKER_LABELS[spk] || spk; }
+
+function renderSpeakers(){
+  speakerGrid.innerHTML = '';
+  SPEAKERS.forEach(spk => {
+    const cell = document.createElement('div');
+    cell.className = 'speaker-cell';
+
+    const btn = document.createElement('button');
+    btn.className = 'speaker-btn';
+    btn.textContent = speakerLabel(spk);
+    btn.onclick = () => convertSpeaker(spk);
+
+    cell.appendChild(btn);
+    speakerGrid.appendChild(cell);
+  });
+}
+
+
+function connectBackend(){
+  const url = WS_URL_INPUT.value.trim();
+  if(!url){
+    setStatus('Please enter a WebSocket URL.');
+    return;
+  }
+
+  ws = new WebSocket(url);
+  ws.binaryType = 'arraybuffer';
+
+  ws.onopen = async () => {
+    setConnected(true);
+    setStatus('Connected. You can now record source audio.');
+    try{
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(micStream, {
+        mimeType: MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : 'audio/webm'
+      });
+      mediaRecorder.ondataavailable = e => { if(e.data.size > 0) audioChunks.push(e.data); };
+      mediaRecorder.onstop = async () => {
+        sourceBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        audioChunks = [];
+        sourceAudio.src = URL.createObjectURL(sourceBlob);
+        sourceAudioCard.style.display = 'block';
+
+        ws.send(JSON.stringify({ cmd: 'upload_audio' }));
+        setTimeout(() => {
+          if(ws && ws.readyState === WebSocket.OPEN){
+            ws.send(sourceBlob);
+          }
+        }, 120);
+      };
+    }catch(err){
+      setStatus('Microphone permission denied.');
+      console.error(err);
+    }
+  };
+
+  ws.onmessage = (event) => {
+    if(typeof event.data !== 'string') return;
+    const msg = JSON.parse(event.data);
+
+    if(msg.status === 'ready_for_audio'){
+      setStatus('Backend ready for uploaded audio...');
+      return;
+    }
+
+    if(msg.status === 'source_ready'){
+      setSourceReady(true);
+      setStatus(`Source uploaded successfully (${msg.seconds}s). Now click a speaker.`);
+      const stt = msg.source_stt || {};
+      const language = stt.language || 'unknown';
+      const originalText = stt.transcribed_text || 'No transcription available.';
+      const englishText = stt.translated_text_en || 'No English translation available.';
+      const message = stt.message || '';
+
+      sttBox.innerHTML = `
+        <b>Language:</b> ${language}<br>
+        <b>Original:</b> ${originalText}<br>
+        <b>English:</b> ${englishText}<br>
+        <b>Message:</b> ${message}
+      `;
+      return;
+    }
+
+    if(msg.status === 'speaker_done'){
+      const spk = msg.speaker;
+      const dataUrl = 'data:audio/wav;base64,' + msg.audio_base64;
+      convertedSpeakerName.textContent = speakerLabel(spk);
+      convertedAudio.src = dataUrl;
+      downloadLink.href = dataUrl;
+      downloadLink.download = `${spk}_converted.wav`;
+      convertedAudioCard.style.display = 'block';
+      convertedAudio.play().catch(()=>{});
+      setStatus(`${speakerLabel(spk)} conversion ready${msg.cached ? ' (cached)' : ''}.`);
+      return;
+    }
+
+    if(msg.status === 'source_cleared'){
+      setSourceReady(false);
+      sourceAudioCard.style.display = 'none';
+      convertedAudioCard.style.display = 'none';
+      sttBox.textContent = 'No transcription available.';
+      setStatus('Source cleared.');
+      return;
+    }
+
+    if(msg.status === 'silence'){
+      setSourceReady(false);
+      setStatus('No speech detected. Please speak louder and try again.');
+      return;
+    }
+
+    if(msg.status === 'error'){
+      setStatus(msg.message || 'Unknown backend error.');
+      return;
+    }
+  };
+
+  ws.onerror = () => setStatus('Connection error.');
+  ws.onclose = () => {
+    setConnected(false);
+    setSourceReady(false);
+    setStatus('Disconnected.');
+  };
+}
+
+function startRecording(){
+  if(!mediaRecorder) return;
+  audioChunks = [];
+  mediaRecorder.start();
+  recordBtn.disabled = true;
+  stopBtn.disabled = false;
+  setStatus('Recording... Click "Stop & Upload" when done.');
+}
+function stopRecording(){
+  if(!mediaRecorder) return;
+  mediaRecorder.stop();
+  recordBtn.disabled = false;
+  stopBtn.disabled = true;
+  setStatus('Uploading recorded source audio...');
+}
+function convertSpeaker(spk){
+  if(!sourceUploaded){ setStatus('Please upload source audio first.'); return; }
+  if(!ws || ws.readyState !== WebSocket.OPEN){ setStatus('Backend is not connected.'); return; }
+  setStatus(`Converting with ${speakerLabel(spk)}...`);
+  ws.send(JSON.stringify({ cmd: 'convert_speaker', speaker: spk }));
+}
+function clearSource(){
+  if(ws && ws.readyState === WebSocket.OPEN){
+    ws.send(JSON.stringify({ cmd: 'clear_source' }));
+  }
+}
+
+connectBtn.onclick = connectBackend;
+recordBtn.onclick = startRecording;
+stopBtn.onclick = stopRecording;
+clearBtn.onclick = clearSource;
+
+renderSpeakers();
+</script>
+</body>
+</html>
