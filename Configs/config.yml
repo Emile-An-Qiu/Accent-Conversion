@@ -1,5 +1,5 @@
-log_dir: "Models/VCTK20"
-save_freq: 2
+log_dir: "Models/VCTK2019"
+save_freq: 10
 device: "cuda"
 epochs: 150
 batch_size: 5
@@ -53,3 +53,6 @@ loss_params:
 
 optimizer_params:
   lr: 0.0001
+  
+optimizer_function:
+  adaptive: true
