@@ -5,7 +5,7 @@ import os
 import os.path as osp
 import re
 import sys
-import yaml ß
+import yaml
 import shutil
 import numpy as np
 import torch
@@ -21,6 +21,11 @@ from optimizers import build_optimizer
 from models import build_model
 from trainer import Trainer
 from torch.utils.tensorboard import SummaryWriter
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
 from Utils.ASR.models import ASRCNN
 from Utils.JDC.model import JDCNet
@@ -120,7 +125,6 @@ def main(config_path):
         trainer.load_checkpoint(config['pretrained_model'],
                                 load_only_params=config.get('load_only_params', True))
 
-    # 在循环开始前初始化最佳损失
     best_loss = float('inf') 
 
     for _ in range(1, epochs + 1):
@@ -129,9 +133,6 @@ def main(config_path):
         eval_results = trainer._eval_epoch()
 
         # -----------------------------------
-        
-        # 这里的 'loss' 键名需要根据你 Trainer 类返回的具体键名修改
-        # 通常是所有 loss 的总和，或者你关注的核心指标 (如 g_loss)
         current_loss = eval_results.get('loss', eval_results.get('g_loss', 999))
 
         results = train_results.copy()
@@ -146,20 +147,13 @@ def main(config_path):
                 for v in value:
                     writer.add_figure('eval_spec', v, epoch)
 
-        # --- 修改后的保存逻辑 ---
-        
-        # 1. 始终保存为最新模型 (覆盖旧的 latest.pth)
-        # 这样你的磁盘里永远只有一个 latest.pth，不会堆积
         trainer.save_checkpoint(osp.join(log_dir, 'latest.pth'))
 
-        # 2. 如果当前损失是历史最低，保存为最好模型
         if current_loss < best_loss:
             best_loss = current_loss
             trainer.save_checkpoint(osp.join(log_dir, 'best_model.pth'))
-            logger.info(f'*** 检测到更好的模型 (Loss: {best_loss:.4f})，已更新 best_model.pth ***')
+            logger.info(f'*** Better Model Detected (Loss: {best_loss:.4f})，best_model.pth Updated ***')
 
-        # 3. (可选) 如果你还是想每隔几个 epoch 存个档，保留原本的逻辑
-        # 如果完全不需要，可以把下面这两行删掉
         if (epoch % save_freq) == 0:
              trainer.save_checkpoint(osp.join(log_dir, 'epoch_%05d.pth' % epoch))
 
