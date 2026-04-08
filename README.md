@@ -98,6 +98,20 @@ The script uses the default paths below unless overridden:
 
 A notebook example call has been added to `Train.ipynb`.
 
+## How to run the demo
+1. Download or open `Demo/Demo.ipynb`.
+2. Place the processed dataset under `Data/VCTK2019/` and put pretrained files in the matching locations:
+   - `Models/VCTK2019/config.yml`
+   - `Models/VCTK2019/epoch_00150.pth`
+   - `Vocoder/config.yml`
+   - `Vocoder/checkpoint-400000steps.pkl`
+   - `Utils/JDC/bst.t7`
+3. Open the notebook in Colab or Jupyter and run the demo cells.
+
+![AccentCat demo landing page](pics/Cat.png)
+
+![AccentCat demo interface](pics/Workstation.png)
+
 ## Pretrained models
 Download pretrained model checkpoints from the provided Google Drive link：
 `https://drive.google.com/drive/folders/1pWxOa8DuGW0_4g8a5g9bTnaOljHA-KzE?usp=sharing`
