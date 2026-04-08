@@ -99,7 +99,7 @@ The script uses the default paths below unless overridden:
 A notebook example call has been added to `Train.ipynb`.
 
 ## How to run the demo
-1. Download or open `Demo/Demo.ipynb`.
+1. git clone the repo and open `Demo/Demo.ipynb`.
 2. Place the processed dataset under `Data/VCTK2019/` and put pretrained files in the matching locations:
    - `Models/VCTK2019/config.yml`
    - `Models/VCTK2019/epoch_00150.pth`
