@@ -62,6 +62,13 @@ List format:
 ```
 /path/to/audio.wav|speaker_id
 ```
+## Models
+Download pretrained model checkpoints from the provided Google Drive link：
+`https://drive.google.com/drive/folders/1pWxOa8DuGW0_4g8a5g9bTnaOljHA-KzE?usp=sharing`
+
+Expected files:（you need to create a Models/ directory first)
+- `Models/VCTK2019/epoch_00150.pth`
+- `Models/VCTK2019/config.yml`
 
 ## Training
 Run from the project root:
@@ -105,20 +112,15 @@ A notebook example call has been added to `Train.ipynb`.
    - `Models/VCTK2019/epoch_00150.pth`
 3. Open the notebook `Demo.ipynb` in Colab or Jupyter and run the demo cells.
 
-![AccentCat demo landing page](pics/Cat.png)
-
-![AccentCat demo interface](pics/Workstation.png)
-
-## Pretrained models
-Download pretrained model checkpoints from the provided Google Drive link：
-`https://drive.google.com/drive/folders/1pWxOa8DuGW0_4g8a5g9bTnaOljHA-KzE?usp=sharing`
-
-Expected files:
-- `Models/VCTK2019/epoch_00150.pth`
-- `Models/VCTK2019/config.yml`
-
 ## References
 - `clovaai/stargan-v2`
 - `kan-bayashi/ParallelWaveGAN`
 - `tosaka-m/japanese_realtime_tts`
 - `keums/melodyExtraction_JDC`
+
+![AccentCat demo landing page](pics/Cat.png)
+
+![AccentCat demo interface](pics/Workstation.png)
+
+
+
