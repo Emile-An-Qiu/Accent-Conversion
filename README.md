@@ -103,9 +103,6 @@ A notebook example call has been added to `Train.ipynb`.
 2. Place the processed dataset under `Data/VCTK2019/` and put pretrained files in the matching locations:
    - `Models/VCTK2019/config.yml`
    - `Models/VCTK2019/epoch_00150.pth`
-   - `Vocoder/config.yml`
-   - `Vocoder/checkpoint-400000steps.pkl`
-   - `Utils/JDC/bst.t7`
 3. Open the notebook in Colab or Jupyter and run the demo cells.
 
 ![AccentCat demo landing page](pics/Cat.png)
@@ -119,8 +116,6 @@ Download pretrained model checkpoints from the provided Google Drive link：
 Expected files:
 - `Models/VCTK2019/epoch_00150.pth`
 - `Models/VCTK2019/config.yml`
-- `Vocoder/config.yml`
-- `Vocoder/checkpoint-400000steps.pkl`
 
 ## References
 - `clovaai/stargan-v2`
