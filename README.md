@@ -99,11 +99,11 @@ The script uses the default paths below unless overridden:
 A notebook example call has been added to `Train.ipynb`.
 
 ## How to run the demo
-1. git clone the repo to the `Colab root directory` and open `Demo/Demo.ipynb`.
-2. Place the processed dataset under `Data/VCTK2019/` and put pretrained files in the matching locations:
+1. git clone the repo to the `Colab root directory`.
+2. Place the processed dataset under `Data/VCTK2019/` and put pretrained files in the matching locations（you need to create a Models/ directory first):
    - `Models/VCTK2019/config.yml`
    - `Models/VCTK2019/epoch_00150.pth`
-3. Open the notebook in Colab or Jupyter and run the demo cells.
+3. Open the notebook `Demo.ipynb` in Colab or Jupyter and run the demo cells.
 
 ![AccentCat demo landing page](pics/Cat.png)
 
